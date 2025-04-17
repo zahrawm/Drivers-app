@@ -1,5 +1,5 @@
 import 'package:drivers_app/screen/login_screen.dart';
-import 'package:drivers_app/screen/sign_up.dart';
+import 'package:drivers_app/screen/sign_up_screen.dart';
 import 'package:drivers_app/widgets/button.dart';
 import 'package:flutter/material.dart';
 

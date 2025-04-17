@@ -1,7 +1,8 @@
+import 'package:drivers_app/provider/sign_up_provider.dart';
 import 'package:drivers_app/screen/home_screen.dart';
-import 'package:drivers_app/widgets/button.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -11,10 +12,20 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  bool _termsAccepted = false;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _phoneController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final validationProvider = Provider.of<ValidationProvider>(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -89,12 +100,18 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
             ),
             const SizedBox(height: 8),
-            const TextField(
+            TextField(
+              controller: _emailController,
               decoration: InputDecoration(
                 hintText: 'Enter email address',
-                hintStyle: TextStyle(color: Colors.grey),
+                hintStyle: const TextStyle(color: Colors.grey),
+                errorText:
+                    validationProvider.emailError.isEmpty
+                        ? null
+                        : validationProvider.emailError,
               ),
               keyboardType: TextInputType.emailAddress,
+              onChanged: (value) => validationProvider.updateEmail(value),
             ),
             const SizedBox(height: 24),
 
@@ -145,13 +162,19 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 const SizedBox(width: 10),
-                const Expanded(
+                Expanded(
                   child: TextField(
+                    controller: _phoneController,
                     decoration: InputDecoration(
                       hintText: 'Mobile number',
-                      hintStyle: TextStyle(color: Colors.grey),
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      errorText:
+                          validationProvider.phoneError.isEmpty
+                              ? null
+                              : validationProvider.phoneError,
                     ),
                     keyboardType: TextInputType.phone,
+                    onChanged: (value) => validationProvider.updatePhone(value),
                   ),
                 ),
               ],
@@ -197,11 +220,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 Transform.scale(
                   scale: 1.2,
                   child: Checkbox(
-                    value: _termsAccepted,
+                    value: validationProvider.termsAccepted,
                     onChanged: (value) {
-                      setState(() {
-                        _termsAccepted = value ?? false;
-                      });
+                      validationProvider.updateTermsAccepted(value ?? false);
                     },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
@@ -256,15 +277,39 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
             ),
             const SizedBox(height: 32),
-            Button(
-              text: 'Register as a driver',
-              color: Colors.green,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
-              },
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed:
+                    validationProvider.isFormValid
+                        ? () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeScreen(),
+                            ),
+                          );
+                        }
+                        : null,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      validationProvider.isFormValid
+                          ? Colors.green
+                          : Colors.grey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: const Text(
+                  'Register as a driver',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
