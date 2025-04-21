@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1061164939553",
+    "project_id": "bolt-d1593",
+    "storage_bucket": "bolt-d1593.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061164939553:android:6b5a9feb9f802aa3b72660",
+        "android_client_info": {
+          "package_name": "com.example.bolt_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061164939553-6c40h3dfot09bdmha47uqk63qoakbjgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOwF-OrvYljJ7qVIb27XQVX45zmh1AYgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061164939553-6c40h3dfot09bdmha47uqk63qoakbjgg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1061164939553-8nukhfpk236isp8jcp062pdvh8par7s1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.boltApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061164939553:android:779ba706eefe9b55b72660",
+        "android_client_info": {
+          "package_name": "com.example.drivers_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061164939553-6c40h3dfot09bdmha47uqk63qoakbjgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOwF-OrvYljJ7qVIb27XQVX45zmh1AYgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061164939553-6c40h3dfot09bdmha47uqk63qoakbjgg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1061164939553-8nukhfpk236isp8jcp062pdvh8par7s1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.boltApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

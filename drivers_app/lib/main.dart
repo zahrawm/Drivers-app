@@ -1,11 +1,16 @@
+import 'package:drivers_app/firebase_options.dart';
 import 'package:drivers_app/provider/email_provider.dart';
 import 'package:drivers_app/provider/sign_up_provider.dart';
 import 'package:drivers_app/screen/register_screen.dart';
 import 'package:drivers_app/screen/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(
     MultiProvider(
       providers: [
@@ -28,11 +33,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       debugShowCheckedModeBanner: false,
+
       initialRoute: '/',
       routes: {
         '/': (_) => const SplashScreen(),
         '/register': (_) => const RegisterScreen(),
-        // '/home': (_) => const HomeScreen(),
       },
     );
   }
